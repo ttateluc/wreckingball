@@ -1,0 +1,39 @@
+[package]
+name = "overtls"
+version = "0.1.5"
+edition = "2021"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+base64 = "0.21"
+bytes = "1.4"
+clap = { version = "4.2", features = ["derive"] }
+dotenvy = "0.15"
+env_logger = "0.10"
+futures-util = { version = "0.3", default-features = false, features = ["sink", "std"] }
+http = "0.2"
+httparse = "1.8"
+log = "0.4"
+reqwest = { version = "0.11", default-features = false, features = ["rustls-tls", "json"] }
+rustls = "0.21"
+rustls-pemfile = "1.0"
+serde = { version = "1.0", features = [ "derive" ] }
+serde_json = "1.0"
+socks5-impl = "0.2"
+thiserror = "1.0"
+tokio = { version = "1.27", features = [ "full" ] }
+tokio-rustls = "0.24"
+tokio-tungstenite = { git = "https://github.com/ssrlive/tokio-tungstenite.git", branch = "mychange", features = [ "rustls-tls-webpki-roots" ] }
+tungstenite = { git = "https://github.com/snapview/tungstenite-rs.git", branch = "master", features = [ "rustls-tls-webpki-roots" ] }
+url = "2.3"
+webpki = { package = "rustls-webpki", version = "0.100", features = ["alloc", "std"] }
+webpki-roots = "0.23"
+
+[target.'cfg(target_os="android")'.dependencies]
+android_logger = "0.13"
+crossbeam = "0.8"
+jni = { version = "0.21", default-features = false }
+lazy_static = "1.4"
